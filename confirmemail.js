@@ -5,8 +5,11 @@ const sendMail = (user, htmlMsg) => {
     const transporter = nodemailer.createTransport({
               service: 'gmail',
               auth: {
-                 user: process.env.APP_ADMIN,
-                 pass: process.env.ADMIN_PASS
+                type: "OAuth2",
+                user: process.env.APP_ADMIN,
+                pass: process.env.ADMIN_PASS,
+                serviceClient: process.env.CLIENT_ID,
+                privateKey: process.env.PRIVATE_KEY.replace(/\\n/g, "\n")
               }
     });
 
