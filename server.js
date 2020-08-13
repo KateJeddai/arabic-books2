@@ -10,6 +10,7 @@ const passport = require('passport');
 const {localStrategy} = require('./config/passport');
 const {localAdminStrategy} = require('./config/passport-admin');
 const {mongoose} = require('./db/mongoose');
+const MongoStore = require('connect-mongo')(session); 
 const {User} = require('./db/models/user');
 const {getHolidays} = require('./controllers/holidays');
 const {getTodayDate, getTodayYear, getTodayDateAr, getHijriDate} = require('./helpers/dates');
@@ -38,6 +39,8 @@ conn.on('connected', () => {
     app.locals.db = conn.db;
 })
 
+const sessionStore = new MongoStore({ mongooseConnection: conn, collection: 'sessions' })
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -51,10 +54,12 @@ app.use(express.urlencoded({limit: "500mb", extended: true, parameterLimit:50000
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
-    secret: 'Bima',
-    resave: true,
-    saveUninitialized: true
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore 
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
