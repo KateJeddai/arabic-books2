@@ -8,8 +8,8 @@ const renderTutorialsPage = (req, res) => {
         holidays: req.hols,
         tutorials: req.tutorials,
         username: req.user ? req.user.username : null,
-        loggedIn: req.user ? true : false
-        // ifAdmin: ifAdmin(req)
+        loggedIn: req.user ? true : false,
+        ifAdmin: req.user && req.user.admin ? true : false
     });
 }
 
@@ -18,8 +18,8 @@ const renderDictionariesPage = (req, res) => {
         holidays: req.hols,
         dictionaries: req.dictionaries,
         username: req.user ? req.user.username : null,
-        loggedIn: req.user ? true : false
-        // ifAdmin: ifAdmin(req)
+        loggedIn: req.user ? true : false,
+        ifAdmin: req.user && req.user.admin ? true : false
     });
 }
 
@@ -28,8 +28,8 @@ const renderDialectsPage = (req, res) => {
         holidays: req.hols,
         dialects: req.dialects,
         username: req.user ? req.user.username : null,
-        loggedIn: req.user ? true : false
-        // ifAdmin: ifAdmin(req)
+        loggedIn: req.user ? true : false,
+        ifAdmin: req.user && req.user.admin ? true : false
     });
 }
 
