@@ -1,27 +1,30 @@
 // send a request to upload a book
 const bookForm = document.getElementById('form-book');
-bookForm.addEventListener('submit', (e) => {
-    addFormData();
+const btnSubmit = document.getElementById('btn');
+
+btnSubmit.addEventListener('click', (e) => {
+  addFormData(e);
 })
 
-const addFormData = () => {
+const addFormData = async (e) => {
+  e.preventDefault();
   const bookInput = document.getElementById('book-input');
   const bookTypeSelect = document.getElementById('book-type');
   const bookType = bookTypeSelect[bookTypeSelect.selectedIndex].value;
-
+  
   const formData = new FormData();   
   formData.append('book', bookInput.files[0]);  
   formData.append('booksPicker', bookType);
 
   fetch('/books/upload-book', {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },    
-    body: formData 
+     method: 'POST', 
+     body: formData
   })
-    .then(response => response.json())
-    .then(data => console.log(data));
+  .then(response => {
+    console.log(response)
+    response.json()
+  })
+  .then(data => console.log(data));
 }
 
 // if signup form is empty (validation)

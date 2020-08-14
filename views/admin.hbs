@@ -53,9 +53,9 @@
         </div>
         <div class="form">            
             <form id="form-book" 
-                  action="/books/upload-book"
-                  method="post" 
-                  enctype="multipart/form-data" 
+                  {{!-- action="/books/upload-book"
+                  method="post" --}}
+                  enctype="multipart/form-data"  
                   >
                 <input name="book" type="file" id="book-input" />
                 <select id="book-type" name="booksPicker">
@@ -64,7 +64,7 @@
                     <option name="dic" value="dictionaries">Dictionaries</option>
                 </select>  
                 <br/>
-                <button class="btn" type="submit">Add a book</button>
+                <button id="btn">Add a book</button>
             </form>
         </div>
         

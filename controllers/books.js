@@ -150,27 +150,21 @@ const uploadBookToGridBucket = (db, bucketName, pathToFile, fileName) => {
 
 const uploadBook = async (req, res) => {
     const db = req.app.locals.db;
-    const {booksPicker} = req.body;
-    if(req.file) {
-        const fileName = req.file.filename;
-        const oldPath = req.file.path;
-        const newPath = `backend/books/${booksPicker}/${fileName}`;
-        try {
-            await moveFileToSubfolder(oldPath, newPath);
-            await uploadBookToGridBucket(db, booksPicker, newPath, fileName);
-            res.render('admin.hbs', {
-                message: 'Upload successful.'
-            });
-        } catch(err) {
-            res.render('admin.hbs', {
-                message: err.message
-            })
-        }            
-    } else {
+    const {booksPicker} = req.body;  
+    const fileName = req.file && req.file.filename;
+    const oldPath = req.file && req.file.path;
+    const newPath = `backend/books/${booksPicker}/${fileName}`;    
+    try {
+        await moveFileToSubfolder(oldPath, newPath);
+        await uploadBookToGridBucket(db, booksPicker, newPath, fileName);
         res.render('admin.hbs', {
-            message: 'Upload failed.'
-        })
-    }   
+            message: 'Upload successful.'
+        });
+    } catch(err) {
+        res.render('admin.hbs', {
+            message: err.message
+        })            
+    } 
 }
 
 // delete a book
