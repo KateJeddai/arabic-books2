@@ -161,9 +161,10 @@ const uploadBook = async (req, res) => {
             message: 'Upload successful.'
         });
     } catch(err) {
-        res.render('admin.hbs', {
-             message: err.message
-        }) 
+        // res.render('admin.hbs', {
+        //     message: err.message
+        // }) 
+        res.status(400).send({"errorMsg": err.message})
     } 
 }
 
