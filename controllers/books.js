@@ -164,7 +164,7 @@ const uploadBook = async (req, res) => {
         // res.render('admin.hbs', {
         //     message: err.message
         // }) 
-        res.status(400).send(err)
+        res.status(400).send({"errorMsg": err.message})
     } 
 }
 
