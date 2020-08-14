@@ -1,30 +1,33 @@
 // send a request to upload a book
-const bookForm = document.getElementById('form-book');
-const btnSubmit = document.getElementById('btn');
+// const bookForm = document.getElementById('form-book');
+// const btnSubmit = document.getElementById('btn');
 
-btnSubmit.addEventListener('click', (e) => {
-  addFormData(e);
-})
+// btnSubmit.addEventListener('click', (e) => {
+//   addFormData(e);
+// })
 
-const addFormData = async (e) => {
-  e.preventDefault();
-  const bookInput = document.getElementById('book-input');
-  const bookTypeSelect = document.getElementById('book-type');
-  const bookType = bookTypeSelect[bookTypeSelect.selectedIndex].value;
+// const addFormData = async (e) => {
+//   e.preventDefault();
+//   const bookInput = document.getElementById('book-input');
+//   const bookTypeSelect = document.getElementById('book-type');
+//   const bookType = bookTypeSelect[bookTypeSelect.selectedIndex].value;
   
-  const formData = new FormData();   
-  formData.append('book', bookInput.files[0]);  
-  formData.append('booksPicker', bookType);
+//   const formData = new FormData();   
+//   formData.append('book', bookInput.files[0]);  
+//   formData.append('booksPicker', bookType);
 
-  fetch('/books/upload-book', {
-     method: 'POST', 
-     body: formData
-  })
-  .then(response => {
-    response.json()
-  })
-  .then(data => console.log(data));
-}
+//   fetch('/books/upload-book', {
+//      method: 'POST', 
+//      body: formData
+//   })
+//   .then(response => {
+//     response.json()
+//   })
+//   .then(data => console.log(data))
+//   .catch(err => {
+//     console.log(err)
+//   })
+// }
 
 // if signup form is empty (validation)
 const signup_form = document.querySelector('.signup-form'),
