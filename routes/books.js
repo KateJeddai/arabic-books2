@@ -50,8 +50,6 @@ router.get('/dialects/:name',  ensureAuthenticated, getHolidays, downloadDialect
 // upload books
 router.post('/upload-book', ensureAuthenticated, (req, res) => {
     multer(req, res, function (err) {
-        console.log('multer', req.file, req.body)
-    
         if (err) {
             res.status(400).send({ err: err.message });
         }    
