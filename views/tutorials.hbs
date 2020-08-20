@@ -9,8 +9,9 @@
    
 </head>
 <body>
+  <div class="contain">
    <div class="body-wrapper"></div>
-  {{> header loggedIn=loggedIn}}  
+   {{> header loggedIn=loggedIn}}  
     <section id="main">
         <div class="info-block">
           {{#if username }}
@@ -34,6 +35,7 @@
           </ul>   
         </div>  
     </section>
+  </div>
   {{> footer}}
   <script src="/js/sidebar.js"></script>
   <script src="/js/arab.js"></script>

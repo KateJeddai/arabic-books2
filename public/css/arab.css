@@ -1,10 +1,14 @@
-
+html {
+    height: 100%;
+}
 body{
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	margin: 0;
 	padding: 0;
 	color: #4d4738;
+	height: 100%;
+    position: relative;
 }
 div.body-wrapper{
 	position: absolute;
@@ -20,6 +24,10 @@ div.body-wrapper{
 .body-wrapper.darkened{
 	background-color: rgba(23,21,16, 0.97);
     visibility: visible;
+}
+div.contain {
+	width: 100vw;
+	min-height: 90%;
 }
 header{
 	display: flex;
@@ -298,7 +306,6 @@ i.far{
   font-size: 1.2rem;
   margin-right: 0.4rem;
 }
-
 .container{
 	flex-basis: 50%;
 	display: flex;
@@ -598,7 +605,10 @@ a#password-changed{
 footer{
 	text-align: center;
 	width: 100%;
-	height: auto;
+	height: 70px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 	padding: 1rem;
 	border-top: 3px solid #6087C8;
 }
@@ -675,9 +685,8 @@ footer{
 		flex-direction: column;
 	}
     a.block{
-    	flex-basis: 70%;
-    	height: 270px;
-    	margin-right: 2rem;
+    	flex-basis: 35%;
+    	height: 200px;
     }    
     div.tooltip{
     	width: 200px;
@@ -713,10 +722,8 @@ footer{
 	} 
 	.container{
 		flex-basis: 90%;
-		margin: 0 auto;
 	} 
     a.block{
-    	flex-basis: 35%;
     	height: 170px;
     }
     div.downloads-group{
@@ -743,12 +750,17 @@ footer{
 }
 
 @media(max-width:600px){
+	section#main {
+		padding: 1rem 0;
+	}
     .container{
 		flex-basis: 100%;
 	} 
 	a.block{
-    	flex-basis: 45%;
-    	margin-right: 1rem;
+		flex-basis: 70%;
+		height: 200px;
+		margin-right: 0;
+		margin-bottom: 1rem;
     }
     div.form-wrapper{
 	    flex-direction: column;

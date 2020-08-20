@@ -9,29 +9,31 @@
    
 </head>
 <body>
-  <div class="body-wrapper"></div>
-  {{> header}}  
-    <div class="card-container">
-    {{#if message}}
-    <div class="modal">
-        <h3>{{message}}</h3>
+  <div class="contain">
+    <div class="body-wrapper"></div>
+    {{> header}}  
+      <div class="card-container">
+      {{#if message}}
+      <div class="modal">
+          <h3>{{message}}</h3>
+      </div>
+      {{else if message_change}}
+      <div class="modal">
+          <h3>{{message_change}} Would you like to <a href="/auth/login" id="password-changed">login?</a></h3>
+      </div>    
+      {{else}}
+        <div class="card-title"><h3>Restore password:</h3></div>    
+        <form method="POST" action="/auth/restore" class="signup-form">        
+          <div class="signup-form-wrapper">  
+              <div class="input-field">
+                <label for="email">Email</label><br/>
+                <input type="text" placeholder="Enter an email" class="form-control" id="email" name="email" />
+              </div>
+          </div>
+          <button class="btn btn-reset" type="submit">Restore password</button>
+        </form>
+      {{/if}}
     </div>
-    {{else if message_change}}
-    <div class="modal">
-        <h3>{{message_change}} Would you like to <a href="/auth/login" id="password-changed">login?</a></h3>
-    </div>    
-    {{else}}
-      <div class="card-title"><h3>Restore password:</h3></div>    
-      <form method="POST" action="/auth/restore" class="signup-form">        
-        <div class="signup-form-wrapper">  
-            <div class="input-field">
-              <label for="email">Email</label><br/>
-              <input type="text" placeholder="Enter an email" class="form-control" id="email" name="email" />
-            </div>
-        </div>
-        <button class="btn btn-reset" type="submit">Restore password</button>
-      </form>
-    {{/if}}
   </div>
   {{> footer}}  
  <script src="/js/sidebar.js"></script>

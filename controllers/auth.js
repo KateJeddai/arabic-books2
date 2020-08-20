@@ -232,6 +232,7 @@ const sendEmailToRestorePass = async (req, res) => {
             const link = "http://" + req.get('host') + "/auth/reset-form?token=" + confirmToken;
             const htmlMsg = "To create a new password, please follow the link below.<br><a href=" + link + ">Click here.</a>";
             sendMail(user, htmlMsg);
+            res.cookie('confirmToken', confirmToken);
             res.render('restore-pass.hbs', {
                 message: 'Instruction how to change your password was sent to your email.'
             });
@@ -245,7 +246,13 @@ const sendEmailToRestorePass = async (req, res) => {
 
 const resetPass = async (req, res) => {
     const {password} = req.body;
-    const confirmToken = req.user.confirmToken;
+    const headers = req.headers.cookie.split(/;/gi);
+    let confirmToken;
+    headers.forEach(header => {
+        if(header.includes('confirmToken')) {
+            confirmToken = header.split('=')[1];
+        }
+    })
     try {  
         const user = await User.findOne({confirmToken});
         user.password = password;

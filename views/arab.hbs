@@ -10,32 +10,33 @@
    
 </head>
 <body>
-  <div class="body-wrapper"></div>
-  {{> header username=username loggedIn=loggedIn}}  
-    <section id="main">       
-        <div class="info-block">
-          {{#if username }}
-            <div id="greeting"><h2>Welcome, {{ username }}!</h2></div>
-          {{/if}}
-          {{> aside }}
-        </div>
-        <div class="container"> 
-          <a class="block dial" href="/books/dialects">
-             <div class="block-title"><h3>Dialects</h3></div>
-          </a>
-          <a class="block tutor" href="/books/tutorials">
-             <div class="block-title"><h3>Tutorials</h3></div>
-          </a>
-          <a class="block dict" href="/books/dictionaries">
-             <div class="block-title"><h3>Dictionaries</h3></div>
-          </a>
-          <a class="block links" href="/links">            
-              <div class="block-title"><h3>Useful Links</h3></div>
-          </a>
-        </div>
-      
-    </section>
-    {{> footer}}
+  <div class="contain">
+    <div class="body-wrapper"></div>
+    {{> header username=username loggedIn=loggedIn}}  
+      <section id="main">       
+          <div class="info-block">
+            {{#if username }}
+              <div id="greeting"><h2>Welcome, {{ username }}!</h2></div>
+            {{/if}}
+            {{> aside }}
+          </div>
+          <div class="container"> 
+            <a class="block dial" href="/books/dialects">
+              <div class="block-title"><h3>Dialects</h3></div>
+            </a>
+            <a class="block tutor" href="/books/tutorials">
+              <div class="block-title"><h3>Tutorials</h3></div>
+            </a>
+            <a class="block dict" href="/books/dictionaries">
+              <div class="block-title"><h3>Dictionaries</h3></div>
+            </a>
+            <a class="block links" href="/links">            
+                <div class="block-title"><h3>Useful Links</h3></div>
+            </a>
+          </div>      
+      </section>
+  </div>
+  {{> footer}}
    
 <script src="js/handlebars-v4.1.2.js"></script>
 <script src="/js/moment.js"></script>
