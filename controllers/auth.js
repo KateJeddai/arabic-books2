@@ -203,7 +203,9 @@ const resendLinkToVerify = async (req, res) => {
 }
 
 const loginUser = (req, res, next) => {
-    let origUrl = req.body.origUrl ? req.body.origUrl.split('+').join(' ') : null;        
+    let origUrl = req.body.origUrl ? req.body.origUrl.split('+').join(' ') : null;
+    req.session.cookie.maxAge = new Date(Date.now() + 1000 * 60 * 60 * 3);
+                                
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/auth/login'

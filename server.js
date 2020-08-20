@@ -19,7 +19,6 @@ const app = express();
 const port = process.env.PORT;  
 
 // passport config
-//require('./config/passport')(passport);
 passport.use('local', localStrategy);
 passport.use('local.admin', localAdminStrategy);
 
@@ -56,12 +55,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    store: sessionStore,
-    cookie: {
-        //maxAge: 24 * 60 * 60 * 1000
-        maxAge: 60 * 1000
-    }
+    saveUninitialized: false,
+    store: sessionStore
 }));
 
 app.use(passport.initialize());
@@ -78,7 +73,6 @@ app.set('view engine', hbs);
 hbs.registerPartial('header', fs.readFileSync(__dirname + '/views/partials/header.hbs', 'utf8'));
 hbs.registerPartial('aside', fs.readFileSync(__dirname + '/views/partials/aside.hbs', 'utf8'));
 hbs.registerPartial('footer', fs.readFileSync(__dirname + '/views/partials/footer.hbs', 'utf8'));
-//hbs.registerPartials(path.join(__dirname, '/views/partials'));
 hbs.registerHelper('getTodayDate', getTodayDate);
 hbs.registerHelper('getTodayYear', getTodayYear);
 hbs.registerHelper('getTodayDateAr', getTodayDateAr);
